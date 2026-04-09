@@ -35,9 +35,8 @@ jobs:
       - name: Upload Pages Artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./build # [ADD] Ensure this matches your project's output folder (usually 'dist' or 'out')
-
-  # [ADD] New Job to actually launch the site
+          path: out/index.html
+  
   deploy:
     needs: build
     runs-on: ubuntu-latest
