@@ -33,7 +33,7 @@ jobs:
       
       # [ADD] This section actually sends the files to GitHub Pages
       - name: Upload Pages Artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v5
         with:
           path: ./out/
   
@@ -44,7 +44,7 @@ jobs:
       name: github-pages
     steps:
       - name: Deploy to GitHub Pages
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
 
   test:
     name: 🔬 Test
