@@ -53,7 +53,7 @@ jobs:
       DOMAIN: ${{ inputs.target_domain || 'openfront.dev' }}
       SUBDOMAIN: ${{ github.event_name == 'push' && github.ref_name || inputs.target_subdomain || 'main' }}
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - name: 📝 Update job summary
         env:
           FQDN: ${{ env.SUBDOMAIN && format('{0}.{1}', env.SUBDOMAIN, env.DOMAIN) || env.DOMAIN || 'openfront.dev' }}
@@ -79,7 +79,7 @@ jobs:
           gh api octocat
       - name: 📝 Create deployment
         if: ${{ github.repository == 'openfrontio/OpenFrontIO' && steps.generate-token.outputs.token != '' }}
-        uses: actions/github-script@v8
+        uses: actions/github-script@v9
         id: deployment
         env:
           ENVIRONMENT: ${{ inputs.target_domain == 'openfront.io' && 'prod' || 'staging' }}
@@ -161,7 +161,7 @@ jobs:
           echo "::endgroup::"
       - name: 🔄 Update deployment status
         if: ${{ always() && github.repository == 'openfrontio/OpenFrontIO' && steps.generate-token.outputs.token != '' && steps.deployment.outcome == 'success' && steps.deployment.outputs.deployment_id != '' }}
-        uses: actions/github-script@v8
+        uses: actions/github-script@v9
         env:
           FQDN: ${{ env.FQDN }}
           DEPLOYMENT_ID: ${{ steps.deployment.outputs.deployment_id }}
